@@ -69,11 +69,17 @@ public class SecureConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Autowired
+    @Bean
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
     }
 
+    @Bean
+    public AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
+    }
+    
+    
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
